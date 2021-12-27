@@ -15,7 +15,7 @@ public class Principal {
         /* Declaración del Scanner de entrada */
         Scanner entrada = new Scanner(System.in);
         
-        /* Datos primivitos comunmente utilizados */
+        /* Datos primitivos comúnmente utilizados */
         int datoEntero = 5;
         float datoFlotante = 17.89F;
         double datoDoble = 17.546;
@@ -83,7 +83,8 @@ public class Principal {
         cadena = entrada.nextLine();
         
         System.out.println("La longitud es: " + cadena.length());
-        
+
+        /* El método compareTo realiza la comparación caracter por caracter de dos cadenas */
         comparacion = cadena.compareTo("Zebra");
         
         System.out.println("Comparacion " + comparacion);

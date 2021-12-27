@@ -13,9 +13,13 @@ import com.zerolcamb.operaciones.OperacionesTarjeta;
  */
 public class Principal {
     public static void main(String[] args) {
+        /* Construccion de objeto operaciones para realizar operaciones de la clase OperacionesTarjeta */
         OperacionesTarjeta operaciones = new OperacionesTarjeta();
+        /* Objeto tarjeta */
         Tarjeta nuevaTarjeta;
+        /* Este objeto tarjeta es obtenido a partir del método llenarTarjeta() */
         nuevaTarjeta = operaciones.llenarTarjeta();
+        /* Se imprime la tarjeta */
         operaciones.imprimirTarjeta(nuevaTarjeta);
     }
     

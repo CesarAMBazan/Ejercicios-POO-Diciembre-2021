@@ -8,12 +8,16 @@ package com.zerolcamb.clases;
  *
  * @author Zerol
  */
+
+/* Clase tarjeta la cual corresponde a una tarjeta bancaria */
 public class Tarjeta {
+    /* Atributos de la clase */
     private String nombre;
     private String cvc;
     private Fecha vencimiento;
     private String numero;
 
+    /* Constructores */
     public Tarjeta(String nombre, String cvc, Fecha vencimiento, String numero) {
         this.nombre = nombre;
         this.cvc = cvc;
@@ -23,7 +27,8 @@ public class Tarjeta {
 
     public Tarjeta() {
     }
-    
+
+    /* Encapsulamiento */
     /* Getters y Setters */
 
     public String getNombre() {
@@ -58,9 +63,10 @@ public class Tarjeta {
         this.numero = numero;
     }
 
+    /* Polimorfismo */
     @Override
     public String toString() {
-        return "Tarjeta{" + "nombre=" + nombre + ", cvc=" + cvc + ", vencimiento=" + vencimiento + ", numero=" + numero + '}';
+        return "Nombre del titular: " + nombre + " cvc:" + cvc + " vencimiento:" + vencimiento + " numero:" + numero;
     }
     
     
