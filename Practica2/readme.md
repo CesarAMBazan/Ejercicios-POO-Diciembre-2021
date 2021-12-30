@@ -1,4 +1,4 @@
-`# Práctica 2 POO
+# Práctica 2 POO
 ### Descripción
 En esta práctica se realizaron operaciones con los distintos tipos de arreglos:
 - Arreglos fijos
@@ -8,4 +8,4 @@ En esta práctica se realizaron operaciones con los distintos tipos de arreglos:
 
 ### Creditos
 Programas realizados por Mejia Bazan César Arturo - 2182005565
-Universidad Autónoma Metropolitana`
+Universidad Autónoma Metropolitana
