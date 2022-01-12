@@ -13,14 +13,19 @@ import uam.zerolcamb.operaciones.OperacionesCheckBox;
  * @author Zerol
  */
 public class FrmCB extends javax.swing.JFrame {
-
+    /* Los checkboxes se guardan en una lista, esta puede ser tanto ArrayList
+       asi como linkedlist, en el caso de esta implementación se realizo con
+       linkedlist, pero la implementación con arraylist es exactamente la misma
+    */
     LinkedList<JCheckBox> listaCBLenguajes = new LinkedList<>();
     /**
      * Creates new form FrmCB
      */
     public FrmCB() {
         initComponents();
+        /* Se agrupan los checkboxes al inicializar la interfaz */
         agruparCheckBoxesLenguajes();
+        /* Se oculta el textfield otro lenguaje utilizando .setVisible(false) */
         txtOtroLenguaje.setVisible(false);
     }
 
@@ -148,15 +153,27 @@ public class FrmCB extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistarActionPerformed
+        /* Si se clickea en el botón registrar, entonces se recuperaran los
+           lenguajes seleccionados desde la lista de checkboxes
+        */
         OperacionesCheckBox operacionesCheckBox = new OperacionesCheckBox();
         LinkedList<String> lenguajes;
+        /* Se llama al metodo para obtener los cursos seleccionados en la lista
+           de checkboxes
+        */
         lenguajes = operacionesCheckBox.obtenerCursosLenguajes(listaCBLenguajes);
         System.out.println(txtOtroLenguaje.getText());
     }//GEN-LAST:event_btnRegistarActionPerformed
 
     private void cbOtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbOtroActionPerformed
+        /* Cuando el checkbox de "otro" este seleccionado, el textfield que
+           corresponde a otro lenguaje sera visible
+        */
         txtOtroLenguaje.setText("");
         txtOtroLenguaje.setVisible(cbOtro.isSelected());
+        /* Se tiene que refrescar la pantalla entera para poder observar
+           este cambio
+        */
         setVisible(true);
     }//GEN-LAST:event_cbOtroActionPerformed
 
@@ -164,6 +181,7 @@ public class FrmCB extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public void agruparCheckBoxesLenguajes(){
+        /* Se agrupan los checkboxes añadiendolos a una lista */
         listaCBLenguajes.add(cbC);
         listaCBLenguajes.add(cbCPP);
         listaCBLenguajes.add(cbJava);

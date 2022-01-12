@@ -18,7 +18,12 @@ public class FrmListas extends javax.swing.JFrame {
      */
     public FrmListas() {
         initComponents();
+        /* Lo primero que se tiene que hacer al trabajar con listas/comboboxes
+           es borrar todos los items que vienen por defecto dentro de esta
+           por lo que se utiliza el metodo .removeAllItems()
+        */
         cmbListaSencilla.removeAllItems();
+        /* Se llama al metodo llenarListaSencilla() al construir esta ventana */
         llenarListaSencilla();
     }
 
@@ -70,12 +75,24 @@ public class FrmListas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        /* Si se clickea en el botón de registrar se va a recuperar el indice
+           y la opción seleccionada de la lista/combobox
+        */
         int indiceSeleccionado;
         String opcionSeleccionada;
         
+        /* Para obtener el indice, se utiliza el metodo getSelectedIndex() el
+           cual regresa un entero
+        */
         indiceSeleccionado = cmbListaSencilla.getSelectedIndex();
+        /* Para obtener la opción seleccionada, se utiliza el metodo
+           getSelectedItem() el cual nos regresa un objeto de la clase Object,
+           por lo que para utilizarlo como String necesitaremos realizar un
+           cast a String
+        */
         opcionSeleccionada = (String)cmbListaSencilla.getSelectedItem();
         
+        /* Se imprime el indice y la opción seleccionada */
         System.out.println("Elegiste:");
         System.out.println(opcionSeleccionada);
         System.out.println(indiceSeleccionado);
@@ -83,13 +100,19 @@ public class FrmListas extends javax.swing.JFrame {
 
     
     private void llenarListaSencilla(){
+        /* Vamos a llenar una lista sencilla con String basicos */
         LlenadoListas llenadoListas = new LlenadoListas();
+        /* Recuperamos la lista de Strings de la clase llenadoListas */
         ArrayList<String> lista = llenadoListas.llenarLista();
+        /* Y con un for-each añadimos cada una de esos String a nuestra
+           lista/combobox
+        */
         for (String string : lista) {
             cmbListaSencilla.addItem(string);
         }
     }
     private void llenarListaDos(){
+        /* Metodo para probar como añadir String a una lista/combobox */
         cmbListaSencilla.addItem("+");
         cmbListaSencilla.addItem("-");
         cmbListaSencilla.addItem("*");

@@ -19,6 +19,7 @@ public class FrmRadioButton extends javax.swing.JFrame {
      */
     public FrmRadioButton() {
         initComponents();
+        /* En el constructor llamamos al metodo para asignar los RadioButtons a un ButtonGroup */
         asignarRadioButtons();
     }
 
@@ -149,6 +150,9 @@ public class FrmRadioButton extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegistrarActionPerformed
+        /* Si el boton de registrar de la interfaz es clickeado llamamos al metodo 
+           para seleccionar un estado civil
+        */
         String estadoCivil = seleccionarEstadoCivil();
         System.out.println("Estado civil: " + estadoCivil);
     }//GEN-LAST:event_BtnRegistrarActionPerformed
@@ -174,6 +178,7 @@ public class FrmRadioButton extends javax.swing.JFrame {
         return resultado;
     }
     public void asignarRadioButtons() {
+        /* Se asignan RadioButtons a un ButtonGroup */
         bgroupEstadoCivil.add(rbCasado);
         bgroupEstadoCivil.add(rbSoltero);
         bgroupEstadoCivil.add(rbDivorciado);

@@ -17,6 +17,7 @@ import uam.zerolcamb.operaciones.OperacionesAlumnos;
  * @author Zerol
  */
 public class FrmPrincipal extends javax.swing.JFrame {
+    /* Nuestra base de datos sera un ArrayList global */
     ArrayList<Alumno> baseDeDatos;
     /**
      * Creates new form FrmPrincipal
@@ -148,31 +149,52 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSalirActionPerformed
+        /* Si en el menú superior se selecciona la opción de salir, se termina el programa */
         System.exit(0);
     }//GEN-LAST:event_menuSalirActionPerformed
 
     private void menuAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAcercaDeActionPerformed
+       /* Si en el menú superior se selecciona la opción de acercaDe
+          se abre una ventana con un mensaje utilizando la clase JOptionPane
+          y su metodo showMessageDialog
+        */
        /* Con 4 parametros */
+       
        JOptionPane.showMessageDialog(this, "Programa realizado por Zerol", "Acerca de", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_menuAcercaDeActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
+        /* Si se da click en registrarse entonces se movera a la pantalla de registro */
         FrmRegistrarse fr = new FrmRegistrarse(baseDeDatos);
         fr.setVisible(true);
+        /* Se cierra esta pantalla */
         this.dispose();
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
+        /* Se intentara iniciar sesión */
         OperacionesAlumnos operacionesAlumnos = new OperacionesAlumnos();
+        /* Se buscara un alumno en la base de datos a partir de lo escrito en el
+           textfield de boleta
+        */
         Alumno alumno = operacionesAlumnos.buscarAlumno(baseDeDatos, txtBoleta.getText());
+        /* Si no existe */
         if(alumno == null){
+            /* Saldra un mensaje de error de que no existe ese alumno */
             JOptionPane.showMessageDialog(this, "No se encontro el alumno", "ERROR", JOptionPane.ERROR_MESSAGE);
+        /* Sí si existe y la contraseña es igual a la del alumno con esa boleta */
         }else if(alumno.getContraseña().equals(new String(pwdPassword.getPassword()))){
+            /* Se imprimira un mensaje de bienvenida */
             JOptionPane.showMessageDialog(this, "Bienvenido :)", "EXITO", JOptionPane.INFORMATION_MESSAGE);
+            /* Se inicializará la ventana de Visualizar alumno construyendolo
+               y enviandole el alumno que inicio sesion
+            */
             FrmVisualizarAlumno fva = new FrmVisualizarAlumno(alumno);
             fva.setVisible(true);
+            /* Se cierra esta ventana */
             this.dispose();
         }else{
+            /* Si la contraseña no es correcta, se imprimira una ventana de error */
             JOptionPane.showMessageDialog(this, "La contraseña no es correcta", "ERROR", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnIniciarActionPerformed
@@ -181,13 +203,26 @@ public class FrmPrincipal extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     private void iniciarBaseDeDatos(){
+        /* Se inicializara nuestra base de datos desde un archivo */
         OperacionesAlumnos oa = new OperacionesAlumnos();
         try {
+            /* con el método leeArchivo de la clase OperacionesAlumnos
+               recuperamos la base de datos
+            */
             baseDeDatos = oa.leeArchivo();
         } catch (IOException ex) {
+            /* Si no existe el archivo, esto esta bien pues trabajaremos con una
+               base de datos "vacia", continuaremos el programa inicializando
+               nuestra lista baseDeDatos, si todo es correcto al registrar un
+               alumno nuevo crearemos un archivo con esta lista la cual
+               podremos recuperar despues
+            */
             System.out.println("Se creo la base de datos");
             baseDeDatos = new ArrayList<>();
         } catch (ClassNotFoundException ex) {
+            /* Si hubo un error al convertir el objeto dentro del archivo,
+               se cerrara el programa.
+            */
             JOptionPane.showMessageDialog(this, "Hubo un error al leer el archivo", "ERROR", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }

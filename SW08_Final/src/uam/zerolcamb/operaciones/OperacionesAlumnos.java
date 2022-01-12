@@ -36,26 +36,34 @@ public class OperacionesAlumnos {
     public ArrayList<Alumno> leeArchivo() throws IOException, ClassNotFoundException {
         entArch = new FileInputStream("Alumnos.dat");
         entStream = new ObjectInputStream(entArch);
+        /* Con ObjectInputStream se lee el objeto almacenado en el archivo */
         Object lista = entStream.readObject();
         entStream.close();
+        /* Como sabemos que es una lista, tenemos que hacerle Cast a ArrayList */
         return (ArrayList<Alumno>) lista;
     }
     
     public Alumno buscarAlumno(ArrayList<Alumno> lista, String boleta){
+        /* Este metodo busca un alumno en una lista a partir de su boleta */
         for (Alumno alumno : lista) {
             if(alumno.getBoleta().equals(boleta)){
+                /* Si encuentra al alumno con esa boleta lo regresa */
                 return alumno;
             }
         }
+        /* Si no encuentra ninguno regresa null */
         return null;
     }
     
     public boolean existeBoleta(ArrayList<Alumno> lista, String boleta){
+        /* Este metodo verifica si ya existe un alumno con esa boleta */
         for (Alumno alumno : lista) {
             if(alumno.getBoleta().equals(boleta)){
+                /* Si si existe regresa true */
                 return true;
             }
         }
+        /* Si no existe regresa false */
         return false;
     }
 }

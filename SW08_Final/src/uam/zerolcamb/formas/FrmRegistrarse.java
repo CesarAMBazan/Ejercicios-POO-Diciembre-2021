@@ -17,6 +17,7 @@ import uam.zerolcamb.operaciones.OperacionesAlumnos;
  * @author Zerol
  */
 public class FrmRegistrarse extends javax.swing.JFrame {
+    /* ArrayList que guarda la base de datos obtenida desde el FrmPrincipal */
     ArrayList<Alumno> db;
     /**
      * Creates new form FrmRegistrarse
@@ -27,6 +28,7 @@ public class FrmRegistrarse extends javax.swing.JFrame {
     
     public FrmRegistrarse(ArrayList<Alumno> listaRecibida){
         initComponents();
+        /* Al construir esta pantalla se asigna una base de datos */
         db = listaRecibida;
     }
     /**
@@ -162,20 +164,33 @@ public class FrmRegistrarse extends javax.swing.JFrame {
     }//GEN-LAST:event_menuAcercaDeActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        /* Se llama a este método para regresar a la pantalla principal */
         regresarAPrincipal();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
         OperacionesAlumnos alumnos = new OperacionesAlumnos();
+        /* Para registrar un alumno crearemos uno auxiliar el cual
+           construiremos a partir de lo ingresado por el usuario
+        */
         Alumno aux = new Alumno();
         aux.setBoleta(txtBoleta.getText());
         aux.setNombre(txtNombre.getText());
+        /* Para obtener la contraseña de un password field utilizamos
+           new String (pwdPassword.getPassword()));
+        */
         aux.setContraseña(new String(pwdPassword.getPassword()));
+        /* Se verifica si ya existe un alumno con esa boleta */
         if(alumnos.existeBoleta(db, aux.getBoleta())){
+            /* Si ya existe se muestra un mensaje de erro */
             JOptionPane.showMessageDialog(this, "La boleta ya esta registrada a un alumno", "ERROR", JOptionPane.ERROR_MESSAGE);
         }else{
+            /* Sí no, se añade ese alumno a nuestra base de datos */
             db.add(aux);
             try {
+                /* Actualizamos el archivo alumnos.dat con el método actualizaArchivo
+                   de la clase OperacionesAlumnos
+                */
                 alumnos.actualizaArchivo(db);
                 JOptionPane.showMessageDialog(this, "Se registro el alumno correctamente", "BIEN", JOptionPane.INFORMATION_MESSAGE);
                 regresarAPrincipal();

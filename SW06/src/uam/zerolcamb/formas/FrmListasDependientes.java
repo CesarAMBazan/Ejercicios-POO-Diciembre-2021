@@ -18,8 +18,12 @@ public class FrmListasDependientes extends javax.swing.JFrame {
      */
     public FrmListasDependientes() {
         initComponents();
+        /* Al construir la interfaz tenemos que remover los items de nuestras
+           dos listas/combobox
+        */
         cmbOpcionBase.removeAllItems();
         cmbOpcionDependiente.removeAllItems();
+        /* Llamamos al metodo llenarOpcionesBase() para llenar la lista/combobox base */
         llenarOpcionesBase();
     }
 
@@ -90,8 +94,12 @@ public class FrmListasDependientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbOpcionBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOpcionBaseActionPerformed
+        /* Si la opción de la lista base seleccionada es diferente de 0, se mostrara
+           la lista dependiente
+        */
         if(cmbOpcionBase.getSelectedIndex() != 0) mostrarTrasSeleccion();
         else{
+            /* Si no, se ocultara */
             ocultarElementos();
         }
     }//GEN-LAST:event_cmbOpcionBaseActionPerformed
@@ -100,11 +108,15 @@ public class FrmListasDependientes extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     private void ocultarElementos(){
+        /* Se ocultaran elementos utilizando el metodo setVisible(false) */
         lblDependiente.setVisible(false);
         cmbOpcionDependiente.setVisible(false);
         btnRegistar.setVisible(false);
     }
     private void mostrarTrasSeleccion(){
+        /* Mostrar tras selección construira la lista dependiente a partir
+           de la opcion e indice seleccionado de la lista base
+        */
         String opcion = "";
         int indiceSeleccionado;
         
@@ -114,17 +126,24 @@ public class FrmListasDependientes extends javax.swing.JFrame {
         
         LlenadoListas listas = new LlenadoListas();
         
+        /* Se obtiene un Arraylist de Strings a partir de la clase LlenadoListas
+           y su metodo llenarListaDependiente
+        */
         ArrayList<String> listaDep = listas.llenarListaDependiente(indiceSeleccionado);
         
+        /* Se limpia la lista dependiente */
         cmbOpcionDependiente.removeAllItems();
         for (String string : listaDep) {
+            /* Se añaden a la lista dependiente opciones a partir de la lista base */
             cmbOpcionDependiente.addItem(string);
         }
+        /* Se muestran los componentes antes ocultos */
         lblDependiente.setVisible(true);
         cmbOpcionDependiente.setVisible(true);
         btnRegistar.setVisible(true);
     }
     private void llenarOpcionesBase(){
+        /* Este metodo llena la lista/combobox base */
         LlenadoListas llenadoListas = new LlenadoListas();
         ArrayList<String> lista = llenadoListas.llenarListaSencilla();
         for (String string : lista) {

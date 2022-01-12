@@ -12,6 +12,7 @@ import uam.zerolcamb.clases.Alumno;
  * @author Zerol
  */
 public class FrmVisualizarAlumno extends javax.swing.JFrame {
+    /* Alumno recibido que inicio sesión */
     Alumno alumno;
     /**
      * Creates new form FrmVisualizarAlumno
@@ -21,6 +22,7 @@ public class FrmVisualizarAlumno extends javax.swing.JFrame {
     }
     public FrmVisualizarAlumno(Alumno al){
         initComponents();
+        /* Se recibe un alumno desde la pantalla de inicio de sesión */
         alumno = al;
         iniciarLabels();
     }
@@ -165,6 +167,7 @@ public class FrmVisualizarAlumno extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnRegresarActionPerformed
     private void iniciarLabels(){
+        /* Se escriben los datos del alumno en pantalla */
         lblSetBoleta.setText(alumno.getBoleta());
         lblSetNombre.setText(alumno.getNombre());
         lblSetContraseña.setText(alumno.getContraseña());

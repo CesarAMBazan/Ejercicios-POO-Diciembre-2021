@@ -10,11 +10,18 @@ import java.io.Serializable;
  *
  * @author Zerol
  */
+
+/* La clase Alumno implementa serializable porque los objetos de esta clase
+   se guardaran en un archivo 
+*/
 public class Alumno implements Serializable{
+    /* Atributos */
     private String boleta;
     private String nombre;
     private String contraseña;
 
+    /* Constructores */
+    /* Sobrecarga de metodo */
     public Alumno(String boleta, String nombre, String contraseña) {
         this.boleta = boleta;
         this.nombre = nombre;
@@ -24,6 +31,7 @@ public class Alumno implements Serializable{
     public Alumno() {
     }
 
+    /* Getters y setters */
     public String getBoleta() {
         return boleta;
     }
@@ -48,6 +56,7 @@ public class Alumno implements Serializable{
         this.contraseña = contraseña;
     }
 
+    /* Polimorfismo con toString */
     @Override
     public String toString() {
         return "Alumno{" + "boleta=" + boleta + ", nombre=" + nombre + ", contrase\u00f1a=" + contraseña + '}';
